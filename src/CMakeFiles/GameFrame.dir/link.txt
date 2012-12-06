@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/GameFrame.dir/main/Main.cpp.o  -o GameFrame -rdynamic -lSDL -lSDL_mixer -lGL -lGLU -lglut -lpng -lm 

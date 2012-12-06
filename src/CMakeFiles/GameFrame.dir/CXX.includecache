@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/david/Dropbox/Programming/C++/GameFrame/src/main/../utilities/../exceptions/Exception.hpp
+iostream
+-
+sstream
+-
+
+/home/david/Dropbox/Programming/C++/GameFrame/src/main/../utilities/../exceptions/FileException.hpp
+sstream
+-
+Exception.hpp
+/home/david/Dropbox/Programming/C++/GameFrame/src/main/../utilities/../exceptions/Exception.hpp
+
+/home/david/Dropbox/Programming/C++/GameFrame/src/main/../utilities/FileUtilities.hpp
+iostream
+-
+fstream
+-
+../exceptions/FileException.hpp
+/home/david/Dropbox/Programming/C++/GameFrame/src/main/../utilities/../exceptions/FileException.hpp
+
+/home/david/Dropbox/Programming/C++/GameFrame/src/main/Main.cpp
+iostream
+-
+fstream
+-
+../utilities/FileUtilities.hpp
+/home/david/Dropbox/Programming/C++/GameFrame/src/main/../utilities/FileUtilities.hpp
+
