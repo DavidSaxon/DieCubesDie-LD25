@@ -3,6 +3,7 @@
 
 //#include "../engine/Engine.hpp"
 #include "../utilities/FileUtilities.hpp"
+#include "../utilities/InputUtilities.hpp"
 
 int main(int argc, char* argv[]) {
 
@@ -14,7 +15,7 @@ int main(int argc, char* argv[]) {
 	bool editor = false;
 
 	//check through the arguments
-	for  (unsigned i = 0; i < static_cast<unsigned>(argc); ++i) {
+	for  (unsigned i = 1; i < static_cast<unsigned>(argc); ++i) {
 
 		//check for the flag start
 		if (argv[i][0] == '-') {
@@ -39,7 +40,8 @@ int main(int argc, char* argv[]) {
 	//if the flags arn't valid warn the user and exit
 	if (!valid) {
 
-		std::cout << "\nInvalid arguments provided. Use -h for help\n" << std::endl;
+		std::cout << "\nInvalid arguments provided. Use -h for help\n"
+			<< std::endl;
 
 		//TODO: wait for an input key here
 
@@ -51,12 +53,7 @@ int main(int argc, char* argv[]) {
 
 		FileUtilities::printFile("main/h.txt");
 
-		//TODO: use the utilities for this input
-		//now wait for the c or q key
-		std::string in = "\0";
-		while (in != "c" && in != "C" && in != "q" && in != "Q") {
-			std::cin >> in;
-		}
+		std::string in = InputUtilities::waitForInputChar("cCqQ");
 
 		//exit the game
 		if (in == "q" || in == "Q") {
