@@ -1,5 +1,5 @@
 #ifndef _FILEEXCEPTION_H_
-#	define _FILEEXCEPTION_H_
+#   define _FILEEXCEPTION_H_
 
 #include <sstream>
 
@@ -7,7 +7,7 @@
 
 /**************************************************************************\
 | File exception extends exception. All exceptions related to files extend |
-| file exception. 														   |
+| file exception.                                                          |
 \**************************************************************************/
 class FileException : public Exception {
 };
@@ -18,12 +18,13 @@ class FileException : public Exception {
 class FileOpenException : public FileException {
 public:
 
-	//CONSTRUCTOR
-	FileOpenException(const std::string& s) {
-		std::stringstream ss;
-		ss << "FILE OPEN EXCEPTION: " << s;
-		info = ss.str();
-	}
+    //CONSTRUCTOR
+    FileOpenException(const std::string& s) {
+        
+        std::stringstream ss;
+        ss << "FILE OPEN EXCEPTION: " << s;
+        info = ss.str();
+    }
 
 };
 

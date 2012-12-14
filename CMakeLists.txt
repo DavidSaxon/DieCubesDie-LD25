@@ -8,6 +8,9 @@ SET(FLAGS "${FLAGS} -g")
 
 SET(SRCS
     src/main/Main.cpp
+    src/engine/Engine.cpp
+    src/engine/Engine_Event.cpp
+    src/engine/Event.cpp
   )
 
 SET(PROGRAMS GameFrame)

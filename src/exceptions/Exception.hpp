@@ -10,19 +10,19 @@
 class Exception {
 public:
 
-	//METHODS
-	const std::string& what() const;
+    //METHODS
+    const std::string& what() const;
 
 protected:
 
-	//VARIABLES
-	std::string info;
+    //VARIABLES
+    std::string info;
 
 };
 
 inline const std::string& Exception::what() const {
 
-	return info;
+    return info;
 };
 
 #endif
