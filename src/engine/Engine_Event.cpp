@@ -16,7 +16,24 @@ void Engine::onExit() {
 void Engine::onKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
 
     /*exit the game, REMOVE THIS*/
-    if (sym == SDLK_F7) {
+    if (sym == SDLK_ESCAPE) {
         running = false;
     }
+    if (sym == SDLK_r) {
+        initState = true;
+    }
+    if (sym == SDLK_q) {
+        running = false;
+    }
+}
+
+void Engine::onMouseMove(int mX, int mY, int relX, int relY,
+    bool left,bool right,bool middle) {
+    dx = mX-(dWidth/2);
+    dy = mY-(dHeight/2);
+}
+
+void Engine::onLButtonUp(int mX, int mY) {
+
+    leftM = true;
 }

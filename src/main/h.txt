@@ -1,8 +1,7 @@
 
-Hope is a 2d platform puzzle game written in c++
+DieCubesDie is a game where you must kill maze solving cubes.
 Program flags:
 -h    show help information, will exit after displaying help
--e    run the editor
 
 
 Enter 'c' to continue or 'q' to exit

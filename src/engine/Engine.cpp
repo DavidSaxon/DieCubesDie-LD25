@@ -4,12 +4,13 @@
 /*Creates a new unitialised engine*/
 Engine::Engine() :
     running (true) {
-
-
 }
 
 //DESTRUCTOR
 Engine::~Engine() {
+
+    delete img;
+    delete deathTex;
 }
 
 //PUBLIC METHODS
@@ -49,6 +50,23 @@ void Engine::init() {
     //initialise opengl
     initOpenGL();
 
+    //load textures
+    loadTextures();
+
+    //set the game state
+    gameState = LEVEL;
+    initState = true;
+
+    //set the camera position
+    cameraPos = Vector3(0, 0, -1);
+    cameraRot = Vector3(0, 0, 0);
+
+    dx = 0;
+    dy = 0;
+
+    SDL_ShowCursor(false);
+
+    srand(time(0));
 }
 
 /*Starts the main game loop*/
@@ -65,6 +83,36 @@ void Engine::execute() {
 
         //clear the screen
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        if (initState) {
+
+            switch(gameState) {
+                case TITLE:
+                    break;
+                case LEVEL:
+                    levelInit();
+                    break;
+            }
+        }
+
+        //draw a cube for testing
+        glLoadIdentity();
+
+        //translate to the camera position
+        glTranslatef(cameraPos.x, cameraPos.y, cameraPos.z);
+        //rotate the camera
+        glRotatef(cameraRot.x, 1, 0, 0);
+        glRotatef(cameraRot.y, 0, 1, 0);
+        glRotatef(cameraRot.z, 0, 0, 1);
+
+        switch(gameState) {
+
+            case TITLE:
+                break;
+            case LEVEL:
+                levelUpdate();
+                break;
+        }
 
         //swap the buffers
         SDL_GL_SwapBuffers();
@@ -89,18 +137,29 @@ void Engine::initSDL() {
 /*Initialise openGL*/
 void Engine::initOpenGL() {
 
-    //Standard initialisation for 2D openGl
-
-    glEnable (GL_BLEND);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    glShadeModel(GL_SMOOTH);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    
+    //glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+
+    glClearColor(0, 0, 0, 1);
+    glClearDepth(1000.0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glMatrixMode(GL_PROJECTION);
-
     glLoadIdentity();
-    glOrtho(0, NATURAL_RESO_X, NATURAL_RESO_Y, 0, 0, 1);
+
+    gluPerspective(45.0, static_cast<float>(dWidth)/static_cast<float>(dHeight),
+        0.001, 200.0);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-
+    
     glEnable(GL_TEXTURE_2D);
 }
